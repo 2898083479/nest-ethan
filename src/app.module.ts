@@ -12,18 +12,9 @@ import { MongooseModule } from '@nestjs/mongoose';
     CatModule, 
     DogModule,
     UserModule,
-    TypeOrmModule.forRoot({ // 连接mysql
-      autoLoadEntities: true, // 设置为true时，使用forFeature注册的实体,会自动添加到entities中
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      // entities: [User],
-      synchronize: true, // 不应该在生产环境中使用，否则会丢失数据
-    }),
-    MongooseModule.forRoot('mongodb://localhost:27017/test') // 连接mongodb
+    MongooseModule.forRoot('mongodb://localhost:27017',{
+      dbName: 'test'
+    }) // 连接mongodb
   ],
 })
 export class AppModule implements NestModule{
