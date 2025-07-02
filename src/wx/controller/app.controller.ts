@@ -7,7 +7,7 @@ import {
   Param,
   Req,
 } from '@nestjs/common';
-import { AppService } from '../service/app.service';
+import { AppService } from '../../service/app.service';
 
 interface RequestBody {
   name: string;

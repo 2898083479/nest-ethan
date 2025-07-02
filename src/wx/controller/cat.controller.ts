@@ -7,8 +7,8 @@ import {
     Post, 
     Query 
 } from "@nestjs/common";
-import { CatDto } from "src/cat/domain/cat.dto";
-import { CatService } from "src/cat/service/cat.service";
+import { CatDto } from "src/wx/domain/cat.dto";
+import { CatService } from "src/wx/service/cat.service";
 import { 
     ResponseCode,
     ResponseMessage
