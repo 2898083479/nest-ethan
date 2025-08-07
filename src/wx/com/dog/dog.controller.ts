@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Inject, Post } from "@nestjs/common";
-import { DogService } from "../service/dog.service";
-import { DogDto } from "../domain/dog.dto";
+import { DogService } from "./service/dog.service";
+import { DogDto } from "./domain/dog.dto";
 
 @Controller('dogs')
 export class DogController {

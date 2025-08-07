@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { CatModule } from './wx/cat.module';
-import { DogModule } from './wx/dog.module';
-import { UserModule } from './wx/user.module';
+import { CatModule } from './wx/com/cat/cat.module';
+import { DogModule } from './wx/com/dog/dog.module';
+import { UserModule } from './wx/com/user/user.module';
 import { NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
