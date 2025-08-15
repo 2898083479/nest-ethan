@@ -1,5 +1,5 @@
 export interface CatDto {
-    name: string;
-    age: number;
-    breed: string;
+  name: string;
+  age: number;
+  breed: string;
 }

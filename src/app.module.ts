@@ -9,15 +9,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    CatModule, 
+    CatModule,
     DogModule,
     UserModule,
-    MongooseModule.forRoot('mongodb://localhost:27017',{
-      dbName: 'test'
-    }) // 连接mongodb
+    MongooseModule.forRoot('mongodb://localhost:27017', {
+      dbName: 'test',
+    }), // 连接mongodb
   ],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('cats');
   }

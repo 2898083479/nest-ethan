@@ -5,8 +5,8 @@ import { UserService } from './service/user.service';
 import { UserController } from './user.controller';
 
 @Module({
-    imports: [], // 使用 TypeOrmModule.forFeature 注册实体
-    controllers: [UserController],
-    providers: [UserService],
+  imports: [], // 使用 TypeOrmModule.forFeature 注册实体
+  controllers: [UserController],
+  providers: [UserService],
 })
 export class UserModule {}

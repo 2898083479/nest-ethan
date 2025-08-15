@@ -1,3 +1,3 @@
 export class DogDto {
-    name: string;
+  name: string;
 }

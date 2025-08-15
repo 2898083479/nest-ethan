@@ -1,46 +1,50 @@
-import { 
-    Body, 
-    Controller, 
-    Get, 
-    HttpException, 
-    HttpStatus, 
-    Post, 
-    Query 
-} from "@nestjs/common";
-import { CatDto } from "src/wx/com/cat/domain/cat.dto";
-import { CatService } from "src/wx/com/cat/service/cat.service";
-import { 
-    ResponseCode,
-    ResponseMessage
-} from "src/response";
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { CatService } from 'src/wx/com/cat/service/cat.service';
+import { Cat } from 'src/schema';
+import { Response } from '../../../common';
+import { getResponseMessage, ResponseCode } from 'src/common/response-code';
 
 @Controller('cats')
 export class CatController<T> {
+  response = new Response();
 
-    constructor(private readonly catService: CatService<T>) {}
+  constructor(private readonly catService: CatService<T>) {}
 
-    @Get()
-    async findAll(@Query('age') age: number, @Query('breed') breed: string) {
-        const data = await this.catService.findAll();
-        return {
-            code: ResponseCode.SUCCESS,
-            message: ResponseMessage[ResponseCode.SUCCESS],
-            data: data
-        }
+  @Post()
+  create(@Body() cat: Cat) {
+    const result = this.catService.createCat(cat);
+    if (!result) {
+      this.response = {
+        category: '0001',
+        code: ResponseCode.OPERATING_FAILED,
+        message: getResponseMessage(ResponseCode.OPERATING_FAILED),
+      };
+      return this.response;
     }
+    this.response = {
+      category: '0001',
+      code: ResponseCode.OPERATING_SUCCESSFULLY,
+      message: getResponseMessage(ResponseCode.OPERATING_SUCCESSFULLY),
+    };
+    return this.response;
+  }
 
-    @Post()
-    create(@Body() createCatDto: CatDto) {
-        this.catService.create(createCatDto);
-        return 'This action adds a new cat';
+  @Get()
+  queryCat(@Query() id: string) {
+    const result = this.queryCat(id);
+    if (!result) {
+      this.response = {
+        category: '0001',
+        code: ResponseCode.OPERATING_FAILED,
+        message: getResponseMessage(ResponseCode.OPERATING_FAILED),
+      };
+      return this.response;
     }
-
-    @Get('/test')
-    test() {
-        try {
-            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    this.response = {
+      category: '0001',
+      code: ResponseCode.OPERATING_SUCCESSFULLY,
+      message: getResponseMessage(ResponseCode.OPERATING_SUCCESSFULLY),
+    };
+    return this.response;
+  }
 }
